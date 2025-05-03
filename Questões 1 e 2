@@ -1,0 +1,5 @@
+Questão 1- É fácil de adicionar logs e gatilhos caso seja necesário, so lê quando necessário assim impedindo alguma alteração indesejada e a uma verficação antes de alterar qualquer atributo. Exemplo: se tivesse um produto númerico cuja o valor nunca pudesse ser negativo, o setter ia ajudar na verificação para que não ouvesse o problema de ficar negativo 
+
+Questão 2- Informações para o livro: título, autor, editora e gênero literário 
+           Abstração: seria uma porque não é o livro em si e sim um conjunto de informações sobre ele, só informações necessárias 
+           Métodos: retirada do livro, devolução do livro e verificar informações do livro
