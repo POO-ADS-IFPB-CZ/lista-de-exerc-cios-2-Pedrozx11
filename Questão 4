@@ -1,0 +1,82 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Fale o número da conta:");
+        int numero = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Fale o nome do titular:");
+        String titular = scanner.nextLine();
+        ContaCorrente conta = new ContaCorrente(numero, titular);
+        int opcao;
+        do{
+            System.out.println("\n--- MENU ---");
+            System.out.println("1 - Pegar");
+            System.out.println("2 - Guardar");
+            System.out.println("3 - Ver Saldo");
+            System.out.println("4 - Ir embora");
+            System.out.print("Escolha uma opção:");
+            opcao = scanner.nextInt();
+            switch (opcao){
+                case 1:
+                    System.out.print("Fale o valor para saque:");
+                    float valorSaque = scanner.nextFloat();
+                    conta.sacar(valorSaque);
+                    break;
+                case 2:
+                    System.out.print("Fale o valor para depósito:");
+                    float valorDeposito = scanner.nextFloat();
+                    conta.depositar(valorDeposito);
+                    break;
+                case 3:
+                    System.out.printf("Saldo atual:R$%.2f\n", conta.consultarSaldo());
+                    break;
+                case 4:
+                    System.out.println("Cabou");
+                    break;
+                default:
+                    System.out.println("Escolha outro");
+            }
+        }while(opcao!=4);
+        scanner.close();
+    }
+} 
+
+public class ContaCorrente{
+    private int numero;
+    private String titular;
+    private float saldo;
+    public ContaCorrente(int numero, String titular) {
+        this.numero = numero;
+        this.titular = titular;
+        this.saldo = 0.0f; 
+    }
+    public void sacar(float valor) {
+        if (valor > 10000) {
+            System.out.println("Não pode pegar acima de 10.000");
+        } else if (valor <= saldo) {
+            saldo -= valor;
+            System.out.println("Pode gastar");
+        } else {
+            System.out.println("Sem dindin");
+        }
+    }
+    public void depositar(float valor){
+        if (valor > 0 && valor <= 10000){
+            saldo += valor;
+            System.out.println("Dindin na conta");
+        }else{
+            System.out.println("Valor errado para depósito. (So pode positivo e abaixo de 10.000)");
+        }
+    }
+    public float consultarSaldo(){
+        return saldo;
+    }
+    public int getNumero(){
+        return numero;
+    }
+    public String getTitular(){
+        return titular;
+    }
+}
